@@ -3,11 +3,24 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 )
+
+// input.go
+
+var brussels *time.Location
+
+func init() {
+	var err error
+	brussels, err = time.LoadLocation("Europe/Brussels")
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 
 func import_csv(path string) ([][]string, error) {
 	f, err := os.Open(path)
@@ -56,7 +69,7 @@ func parseKwartieren(rows [][]string) ([]Kwartierwaarde, error) {
 
 	for _, row := range rows {
 		samengevoegd := row[0] + " " + row[1]
-		t, err := time.Parse("2/01/2006 15:04:05", samengevoegd)
+		t, err := time.ParseInLocation("2/01/2006 15:04:05", samengevoegd, brussels)
 		if err != nil {
 			return nil, fmt.Errorf("Ongeldige Waarde %q: %w", samengevoegd, err)
 		}
