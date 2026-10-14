@@ -10,8 +10,6 @@ import (
 	"time"
 )
 
-// input.go
-
 var brussels *time.Location
 
 func init() {
