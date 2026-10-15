@@ -26,6 +26,7 @@ func main() {
 	afnametotaal := totaal(kwartierwaarden, "Afname")
 	injectietotaal := totaal(kwartierwaarden, "Injectie")
 	maandpieken := PiekenPerMaand(kwartierwaarden)
+	gemiddeldemaandpiek := GemiddeldeMaandPiek(maandpieken)
 	fmt.Println("TOTALEN:")
 	fmt.Printf("Afname: %.3f kWh\n", afnametotaal)
 	fmt.Printf("Injectie: %.3f kWh\n", injectietotaal)
@@ -33,6 +34,6 @@ func main() {
 	for _, k := range maandpieken {
 		fmt.Println(k)
 	}
-	fmt.Printf("Gemiddelde Maandpiek: %.3f\n", GemiddeldeMaandPiek(maandpieken))
+	fmt.Printf("Gemiddelde Maandpiek: %.3f\n", gemiddeldemaandpiek)
 
 }
